@@ -9,5 +9,7 @@ package Aula2;
  * @author 20212pf.cc0012
  */
 public class CalculoMedia {
-    
+    public static void main(String[] args) {
+        System.out.println("Olá, Mundo!");
+    }
 }
