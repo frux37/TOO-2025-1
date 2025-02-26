@@ -11,6 +11,8 @@ import java.util.Scanner;
 public class CalculoMedia {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
-        System.out.println("Olá, Mundo!");
+        
+        System.out.println("Informe o nome do aluno: ");
+        String nome = entrada.nextLine();
     }
 }
