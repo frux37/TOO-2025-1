@@ -23,9 +23,9 @@ public class Bee1158 {
         //System.out.println("Informe outro valor inteiro:");
         //int Y = entrada.nextInt();
         
-        for(int i = 0; i < X; i++) {
+        //for(int i = 0; i < X; i++) {
             
-        }
+        //}
         
     }
 }
