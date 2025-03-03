@@ -14,18 +14,26 @@ public class Bee1158 {
         
         Scanner entrada = new Scanner(System.in);
         
-        System.out.println("Informe a quantidade de casos de teste");
         int N = entrada.nextInt();
-        
-        System.out.println("Informe um valor inteiro");
-        String X = entrada.nextLine();
-        
-        //System.out.println("Informe outro valor inteiro:");
-        //int Y = entrada.nextInt();
-        
-        //for(int i = 0; i < X; i++) {
+         
+        for(int i = 0; i < N; i++) {
             
-        //}
+            int X = entrada.nextInt();
+            int Y = entrada.nextInt();
+            
+            int soma = 0;
+            
+            if(X % 2 == 0) {
+                X++;
+            }
+            
+            for(int j = 0; j < Y; j++) {
+                soma = soma + X;
+                X = X + 2;
+            }
+            
+            System.out.println(soma);
+        }
         
     }
 }

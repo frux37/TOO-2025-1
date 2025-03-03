@@ -9,18 +9,24 @@ import java.util.Scanner;
  *
  * @author CHARLES
  */
-public class Bee1044 { 
+public class Bee1893 {
     public static void main(String[] args) {
         
         Scanner entrada = new Scanner(System.in);
         
-        int A = entrada.nextInt();
-        int B = entrada.nextInt();
+        int a = entrada.nextInt();
+        int b = entrada.nextInt();
         
-        if (A % B == 0 || B % A == 0) {
-            System.out.println("Sao multiplos");
+        if(b >= 0 && b <= 2) {
+            System.out.println("nova");
+        } else if (b >= 3 && b <= 96) {
+            if(b > a) {
+                System.out.println("crescente");
+            } else {
+                System.out.println("minguante");
+            }
         } else {
-            System.out.println("Nao sao multiplos");
+            System.out.println("cheia");
         }
     }
 }
