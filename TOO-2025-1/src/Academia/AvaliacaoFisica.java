@@ -83,4 +83,9 @@ public class AvaliacaoFisica {
         dados += String.format("IMC: %.2f\n", calcularIMC());
         return dados;
     }
+    
+    @Override
+    public String toString() {
+        return formato.format(data) + "- IMC " + imc;
+    }
 }

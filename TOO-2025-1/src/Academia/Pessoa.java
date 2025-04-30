@@ -140,4 +140,18 @@ public class Pessoa {
 
         return aux;
     }*/
+
+    @Override
+    public String toString() {
+        return nome;
+    }
+    
+    public String mostrarAvaliacoes(){
+        
+        String texto = "Histórico de avaliacoes";
+        for(AvaliacaoFisica avaliacao: avaliacoes){
+            texto += avaliacao+"\n";
+        }
+        return texto;
+    }
 }
