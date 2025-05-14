@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Academia;
+package Academia.Model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -12,16 +12,27 @@ import java.time.format.DateTimeFormatter;
  * @author CHARLES
  */
 public class AvaliacaoFisica {
-    private Pessoa aluno;
+    private Aluno aluno;
     private LocalDate data;
     private double peso;
     private double altura;
     private int idade;
     private double imc;
+    private Professor professor;
     
-    public AvaliacaoFisica(Pessoa aluno) {
+    DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyy");
+    
+    public AvaliacaoFisica(Aluno aluno) {
         this.aluno = aluno;
-        this.data = LocalDate.now();
+        data = LocalDate.now();
+    }
+    
+    public Aluno getAluno() {
+        return aluno;
+    }
+    
+    public void setAluno(Aluno aluno){
+        this.aluno = aluno;
     }
     
     public LocalDate getData() {
@@ -29,10 +40,6 @@ public class AvaliacaoFisica {
     }
     public void setData(LocalDate data) {
         this.data = data;
-    }
-
-    public Pessoa getAluno() {
-        return aluno;
     }
 
     public double getPeso() {
@@ -56,9 +63,33 @@ public class AvaliacaoFisica {
             System.out.println("Altura inválida!");
         }
     }
+    
+    public int getIdade(){
+        return idade;
+    }
+    
+    public void setIdade(int idade){
+        this.idade = idade;
+    }
 
+    public double getImc(){
+        return imc;
+    }
+    
+    public void setImc(double imc){
+        this.imc = imc;
+    }
+    
+    public Professor getProfessor(){
+        return professor;
+    }
+    
+    public void setProfessor(Professor professor){
+        this.professor = professor;
+    }
+    
     public double calcularIMC() {
-        double imc = peso / (altura * altura);
+        imc = peso / (altura * altura);
         return imc;
     } 
 
@@ -66,7 +97,7 @@ public class AvaliacaoFisica {
         LocalDate nascimento = aluno.getDataNascimento();
         LocalDate hoje = LocalDate.now();
 
-        int idade = hoje.getYear() - nascimento.getYear();
+        idade = hoje.getYear() - nascimento.getYear();
 
         if (hoje.getMonthValue() < nascimento.getMonthValue() || (hoje.getMonthValue() == nascimento.getMonthValue() && hoje.getDayOfMonth() < nascimento.getDayOfMonth())) {
             idade--;
@@ -75,12 +106,22 @@ public class AvaliacaoFisica {
     } 
 
     public String exibirDados() {
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String dados = "Avaliação Física:\n";
+        String dados = "Dados da Avaliacao Fisica:\n";
         dados += "Nome do aluno: " + aluno.getNome() + "\n";
-        dados += "Idade: " + calcularIdade() + " anos\n";
-        dados += "Data da avaliação: " + formato.format(data) + "\n";
-        dados += String.format("IMC: %.2f\n", calcularIMC());
+        calcularIdade();
+        if(idade != 0){
+            dados += "Idade: " + idade + "\n";
+        }
+        if(data != null){
+            dados += "Data da Avaliacao: " + formato.format(data) + "\n";
+        }
+        imc = calcularIMC();
+        if(imc > 0){
+            dados += "IMC: %.2f" + imc + "\n";
+        }
+        if(professor != null){
+            dados += "Professor: " + professor;
+        }
         return dados;
     }
     
