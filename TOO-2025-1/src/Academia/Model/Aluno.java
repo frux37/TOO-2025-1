@@ -7,6 +7,9 @@ package Academia.Model;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
 
 
 /**
@@ -14,11 +17,11 @@ import java.time.LocalDate;
  * @author CHARLES
  */
 public class Aluno extends Pessoa{
-    private String matricula;
-    private List<AvaliacaoFisica> avaliacoes = new ArrayList<>();
-    private Plano plano;
-    private LocalDate dataMatricula;
-    private double valorMensalidade;
+    protected String matricula;
+    protected List<AvaliacaoFisica> avaliacoes = new ArrayList<>();
+    protected Plano plano;
+    protected LocalDate dataMatricula;
+    protected double valorMensalidade;
 
     
     public String getMatricula(){
@@ -69,30 +72,51 @@ public class Aluno extends Pessoa{
     }
     
     public void verificaDesconto() {
-        if (plano == null || dataMatricula == null) return;
+        int anos = Period.between(dataMatricula, LocalDate.now()).getYears();
+        int meses = Period.between(dataMatricula, LocalDate.now()).getMonths();
 
-        LocalDate hoje = LocalDate.now();
-        
-        int meses = hoje.getMonthValue() - dataMatricula.getMonthValue() + (12 * (hoje.getYear() - dataMatricula.getYear()));
+        meses += (anos * 12);
 
-        if (meses >= 3) {
-            valorMensalidade = plano.getValor() * 0.9;
-        } else {
+        if (plano != null) {
             valorMensalidade = plano.getValor();
+
+            if (meses >= 3) {
+                valorMensalidade -= (valorMensalidade * 0.1);
+            } else {
+
+                System.out.println("Aluno não possui tempo para desconto");
+            }
+        } else {
+            System.out.println("Aluno não possui plano selecionado. Informe o plano do aluno");
         }
     }
     
+    public List<AvaliacaoFisica> getAvaliacoes(){
+        return avaliacoes;
+    }
+
     @Override
     public String exibirDados() {
+        
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
         String aux = super.exibirDados();
+        
         aux += "\nMatricula: " + matricula;
-
+        
+        if(dataMatricula != null) {
+            aux += "\nData de Matricula: " + formato.format(dataMatricula);
+        }
+        
+        aux += "\nAvaliacoes Fisicas Realizadas: " + avaliacoes.size();
+        
         if (plano != null) {
             aux += "\nPlano: " + plano.getNome();
             aux += "\nMensalidade: R$" + String.format("%.2f", valorMensalidade);
         }
-
-        aux += "\nAvaliacoes Fisicas Realizadas: " + avaliacoes.size() + "\n";
+        
+        aux += "\n";
+        
         return aux;
     }
 }
