@@ -12,6 +12,7 @@ import Academia.Model.Professor;
 import Academia.Model.Plano;
 import Academia.Model.AlunoConvenio;
 import Academia.Model.Convenio;
+import Academia.Model.Impressora;
 
 /**
  *
@@ -22,28 +23,42 @@ public class Teste {
     public static void main(String[] args) {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         
-        Plano pBasico = new Plano("Basico", "Acesso a academia", 100.00);
-        Plano pPremium = new Plano("Premium", "Acesso total + aulas especiais", 200.00);
+        Professor p = new Professor();
+        p.setNome("Juka");
+        p.setCpf("123.123.123-67");
+        p.setEspecializacao("Musculação");
         
-        Convenio convenioIF = new Convenio();
-        convenioIF.setNome("IFSUL");
-        convenioIF.setDesconto(5);
+        System.out.println(p.exibirDados());
         
-        //
-        Aluno alunoBasico = new Aluno();
-        alunoBasico.setNome("Basicao da Silva");
-        alunoBasico.setDataMatricula(LocalDate.parse("15/03/2025", formato));
-        alunoBasico.setPlano(pBasico);
+        Plano plano1 = new Plano();
+        plano1.setNome("Básico");
+        plano1.setDescricao("Acesso a musculação liberada");
+        plano1.setValor(100);
         
-        System.out.println("=== ALUNO NORMAL ===");
-        System.out.println(alunoBasico.exibirDados());
+        Convenio c = new Convenio();
+        c.setNome("IFSUL");
+        c.setDesconto(5);
         
-        AlunoConvenio alunoPremium = new AlunoConvenio(convenioIF);
-        alunoPremium.setNome("Premiumzao Ferreira");
-        alunoPremium.setDataMatricula(LocalDate.parse("10/01/2025", formato));
-        alunoPremium.setPlano(pPremium);
+        AlunoConvenio a = new AlunoConvenio(c);
+        a.setNome("Vivente");
+        a.setMatricula("123");
         
-        System.out.println("\n=== ALUNO CONVENIADO ===");
-        System.out.println(alunoPremium.exibirDados());
+        a.setDataNascimento(LocalDate.parse("10/01/2008", formato));
+        
+        a.setDataMatricula(LocalDate.parse("10/04/2024", formato));
+        
+        a.setPlano(plano1);
+        
+        
+        AvaliacaoFisica av1 = new AvaliacaoFisica(a);
+        a.adicionarAvaliacao(av1);
+        av1.setProfessor(p);
+        
+        System.out.println(a.exibirDados());
+        
+        System.out.println("---- ");
+        System.out.println(av1.exibirDados());
+        
+        Impressora.imprimirDados(e);
     }
 }

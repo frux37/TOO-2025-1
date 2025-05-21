@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author CHARLES
  */
-public class Pessoa {
+public abstract class Pessoa implements Exibivel{
     private String nome;
     private LocalDate dataNascimento;
     private String CPF;
@@ -60,6 +60,7 @@ public class Pessoa {
         }
     }
    
+    @Override
     public String exibirDados(){
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         

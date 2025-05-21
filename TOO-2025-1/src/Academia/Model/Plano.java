@@ -8,7 +8,7 @@ package Academia.Model;
  *
  * @author CHARLES
  */
-public class Plano {
+public class Plano implements Exibivel{
 
     private String nome;
     private String descricao;
@@ -18,6 +18,10 @@ public class Plano {
         this.nome = nome;
         this.descricao = descricao;
         this.valor = valor;
+    }
+
+    public Plano() {
+        
     }
 
     public String getNome() {
@@ -42,6 +46,15 @@ public class Plano {
 
     public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    @Override
+    public String exibirDados(){
+        String aux = "Dados do plano";
+        aux += "\nNome do Plano" + nome;
+        aux += "\nDescricao" + descricao;
+        aux += "\nValor: " + valor;
+        return aux;
     }
     
 }

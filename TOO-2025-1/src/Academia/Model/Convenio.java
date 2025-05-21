@@ -36,4 +36,5 @@ public class Convenio {
     public void setDesconto(double desconto){
         this.desconto = desconto;
     }
+
 }
