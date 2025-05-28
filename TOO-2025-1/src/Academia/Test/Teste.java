@@ -26,13 +26,12 @@ public class Teste {
         Professor p = new Professor();
         p.setNome("Juka");
         p.setCpf("123.123.123-67");
-        p.setEspecializacao("Musculação");
+        p.setEspecializacao("Musculacao");
         
-        System.out.println(p.exibirDados());
         
         Plano plano1 = new Plano();
-        plano1.setNome("Básico");
-        plano1.setDescricao("Acesso a musculação liberada");
+        plano1.setNome("Basico");
+        plano1.setDescricao("Acesso a musculacao liberada");
         plano1.setValor(100);
         
         Convenio c = new Convenio();
@@ -42,11 +41,8 @@ public class Teste {
         AlunoConvenio a = new AlunoConvenio(c);
         a.setNome("Vivente");
         a.setMatricula("123");
-        
         a.setDataNascimento(LocalDate.parse("10/01/2008", formato));
-        
         a.setDataMatricula(LocalDate.parse("10/04/2024", formato));
-        
         a.setPlano(plano1);
         
         
@@ -54,11 +50,9 @@ public class Teste {
         a.adicionarAvaliacao(av1);
         av1.setProfessor(p);
         
-        System.out.println(a.exibirDados());
-        
-        System.out.println("---- ");
-        System.out.println(av1.exibirDados());
-        
-        Impressora.imprimirDados(e);
+        Impressora.imprimirDados(p);
+        Impressora.imprimirDados(plano1); 
+        Impressora.imprimirDados(av1);
+        Impressora.imprimirDados(a); 
     }
 }

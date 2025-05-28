@@ -66,8 +66,8 @@ public class AlunoConvenio extends Aluno {
         String dados = super.exibirDados();
 
         if (convenio != null) {
-            dados += "\nConvênio: " + convenio.getNome();
-            dados += "\nDesconto: " + String.format("%.0f", convenio.getDesconto()) + "%";
+            dados += "\nConvenio: " + convenio.getNome();
+            dados += "\nDesconto: " + String.format("%.0f", convenio.getDesconto()) + "%\n";
         }
 
         return dados;

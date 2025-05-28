@@ -105,6 +105,7 @@ public class AvaliacaoFisica implements Exibivel {
         return idade;
     } 
 
+    @Override
     public String exibirDados() {
         String dados = "Dados da Avaliacao Fisica:\n";
         dados += "Nome do aluno: " + aluno.getNome() + "\n";

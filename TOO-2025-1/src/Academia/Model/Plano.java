@@ -4,6 +4,8 @@
  */
 package Academia.Model;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author CHARLES
@@ -13,6 +15,7 @@ public class Plano implements Exibivel{
     private String nome;
     private String descricao;
     private double valor;
+    DecimalFormat formatoMoeda = new DecimalFormat("#,##0.00");
     
     public Plano(String nome, String descricao, double valor) {
         this.nome = nome;
@@ -49,11 +52,17 @@ public class Plano implements Exibivel{
     }
 
     @Override
+    public String toString() {
+        
+        return nome + " - " +formatoMoeda.format(valor);
+    }
+    
+    @Override
     public String exibirDados(){
-        String aux = "Dados do plano";
-        aux += "\nNome do Plano" + nome;
-        aux += "\nDescricao" + descricao;
-        aux += "\nValor: " + valor;
+        String aux = "Dados do plano: ";
+        aux += "\nNome do Plano: " + nome;
+        aux += "\nDescricao: " + descricao;
+        aux += "\nValor: R$ " + formatoMoeda.format(valor);
         return aux;
     }
     

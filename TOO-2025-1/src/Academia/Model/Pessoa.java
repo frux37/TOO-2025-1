@@ -55,7 +55,7 @@ public abstract class Pessoa implements Exibivel{
                     cpf.substring(6, 9) + "-" +
                     cpf.substring(9, 11);
             } else {
-                System.out.println("CPF inválido!");
+                System.out.println("CPF invalido!");
             }
         }
     }
